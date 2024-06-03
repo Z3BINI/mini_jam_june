@@ -1,14 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://c70fmn0cl4qur"]
+[gd_scene load_steps=5 format=3 uid="uid://c70fmn0cl4qur"]
 
 [ext_resource type="PackedScene" uid="uid://b4rbwvl7yshl8" path="res://scenes/base_scenes/entity.tscn" id="1_xsckm"]
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="2_euy52"]
 [ext_resource type="Texture2D" uid="uid://cgoup5237bs31" path="res://icon.svg" id="3_1ljuk"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q8prq"]
+radius = 63.0
+height = 126.0
+
 [node name="Player" instance=ExtResource("1_xsckm")]
+collision_mask = 2
 script = ExtResource("2_euy52")
 MAX_SPEED = 500.0
 ACCEL = 200.0
 DECEL = 100.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CapsuleShape2D_q8prq")
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("3_1ljuk")
