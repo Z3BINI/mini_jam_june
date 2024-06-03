@@ -26,3 +26,12 @@ func move(direction : Vector2) -> void:
 		direction = direction.normalized()
 		
 	velocity = velocity.move_toward(direction * MAX_SPEED, ACCEL)
+
+func stop(type : String):
+	match type:
+		"normal":
+			velocity = velocity.move_toward(Vector2.ZERO, DECEL)
+		"forced":
+			velocity = Vector2.ZERO
+		"_":
+			print("Wrong Entity stop(type : String) type request!")
