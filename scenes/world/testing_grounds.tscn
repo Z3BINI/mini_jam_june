@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://y2c83o11ef3t"]
+
+[ext_resource type="Texture2D" uid="uid://cgoup5237bs31" path="res://icon.svg" id="1_6ya5b"]
+[ext_resource type="PackedScene" uid="uid://c70fmn0cl4qur" path="res://scenes/entities/player.tscn" id="2_0gv5v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4yv0"]
+size = Vector2(1388, 16)
+
+[node name="TestingGrounds" type="Node2D"]
+
+[node name="TestGround" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestGround"]
+shape = SubResource("RectangleShape2D_n4yv0")
+
+[node name="Sprite2D" type="Sprite2D" parent="TestGround"]
+scale = Vector2(10.8141, 0.121333)
+texture = ExtResource("1_6ya5b")
+
+[node name="Player" parent="." instance=ExtResource("2_0gv5v")]
+position = Vector2(-19, -191)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-15, -296)
