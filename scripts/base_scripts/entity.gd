@@ -19,19 +19,15 @@ func _process(_delta : float) -> void:
 func _physics_process(_delta : float) -> void:
 	move_and_slide()
 
-func move(direction : Vector2) -> void:
+func move(horizontal_direction : float) -> void:
 	if !can_move: return
-	
-	if !(direction.is_normalized()):
-		direction = direction.normalized()
-		
-	velocity = velocity.move_toward(direction * MAX_SPEED, ACCEL)
+	velocity.x = move_toward(velocity.x, horizontal_direction * MAX_SPEED, ACCEL)
 
 func stop(type : String):
 	match type:
 		"normal":
-			velocity = velocity.move_toward(Vector2.ZERO, DECEL)
+			velocity.x = move_toward(velocity.x, 0, DECEL)
 		"forced":
-			velocity = Vector2.ZERO
+			velocity.x = 0
 		"_":
 			print("Wrong Entity stop(type : String) type request!")
