@@ -19,14 +19,14 @@ func _process(_delta : float) -> void:
 func _physics_process(_delta : float) -> void:
 	move_and_slide()
 
-func move(horizontal_direction : float) -> void:
+func move(horizontal_direction : float, delta : float) -> void:
 	if !can_move: return
-	velocity.x = move_toward(velocity.x, horizontal_direction * MAX_SPEED, ACCEL)
+	velocity.x = move_toward(velocity.x, horizontal_direction * MAX_SPEED, ACCEL * delta)
 
-func stop(type : String):
+func stop(type : String, delta : float):
 	match type:
 		"normal":
-			velocity.x = move_toward(velocity.x, 0, DECEL)
+			velocity.x = move_toward(velocity.x, 0, DECEL * delta)
 		"forced":
 			velocity.x = 0
 		"_":
