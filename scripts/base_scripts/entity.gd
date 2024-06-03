@@ -4,6 +4,8 @@ class_name Entity extends CharacterBody2D
 @export var ACCEL : float
 @export var DECEL : float
 
+const GRAVITY : float = 500
+
 var can_move : bool = true
 var current_speed : float
 
@@ -11,10 +13,10 @@ var current_speed : float
 func _ready() -> void:
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta : float) -> void:
-	pass
+func _process(delta : float) -> void:
+	if !is_on_floor():
+		fall(delta)
 	
 func _physics_process(_delta : float) -> void:
 	move_and_slide()
@@ -31,3 +33,6 @@ func stop(type : String, delta : float):
 			velocity.x = 0
 		"_":
 			print("Wrong Entity stop(type : String) type request!")
+			
+func fall(delta : float):
+	velocity.y += GRAVITY * delta
