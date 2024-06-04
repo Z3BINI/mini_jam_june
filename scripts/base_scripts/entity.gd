@@ -15,8 +15,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta : float) -> void:
-	if !is_on_floor():
-		fall(delta)
+	pass
 	
 func _physics_process(_delta : float) -> void:
 	move_and_slide()
@@ -36,3 +35,9 @@ func stop(type : String, delta : float):
 			
 func fall(delta : float):
 	velocity.y += GRAVITY * delta
+	
+func hover(delta : float):
+	if velocity.y < 0:
+		velocity.y += (GRAVITY / 6) * delta
+	else:
+		velocity.y = 0
