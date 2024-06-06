@@ -43,6 +43,9 @@ func _physics_process(_delta : float) -> void:
 		right_arm.look_at(right_thing_to_stick.global_position)
 
 func _input(event):
+	if event.is_action_pressed("boost"):
+		apply_central_impulse(Vector2.UP * 1000)
+	
 	if event.is_action_pressed("shoot_grapple_left"):
 		if left_ready:
 			left_ready = false
