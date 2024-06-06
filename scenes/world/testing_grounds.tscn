@@ -47,6 +47,57 @@ shape = SubResource("RectangleShape2D_dvjih")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("CircleShape2D_xoad2")
 
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(254, -1059)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+modulate = Color(0.876007, 0.876007, 0, 1)
+texture = ExtResource("1_6ya5b")
+
+[node name="Grappable4" type="Area2D" parent="StaticBody2D3"]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3/Grappable4"]
+shape = SubResource("RectangleShape2D_dvjih")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("CircleShape2D_xoad2")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(-281, -1490)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D4"]
+modulate = Color(0.876007, 0.876007, 0, 1)
+texture = ExtResource("1_6ya5b")
+
+[node name="Grappable4" type="Area2D" parent="StaticBody2D4"]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4/Grappable4"]
+shape = SubResource("RectangleShape2D_dvjih")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+shape = SubResource("CircleShape2D_xoad2")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(367, -1861)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D5"]
+modulate = Color(0.876007, 0.876007, 0, 1)
+texture = ExtResource("1_6ya5b")
+
+[node name="Grappable4" type="Area2D" parent="StaticBody2D5"]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5/Grappable4"]
+shape = SubResource("RectangleShape2D_dvjih")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+shape = SubResource("CircleShape2D_xoad2")
+
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2(-276, -828)
 
