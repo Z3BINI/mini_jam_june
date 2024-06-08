@@ -37,10 +37,6 @@ func _physics_process(_delta : float) -> void:
 	if input_direction:
 		apply_central_force(Vector2(input_direction * MOVE_FORCE, 0))
 		
-	if left_hooked:
-		left_arm.look_at(left_thing_to_stick.global_position)
-	if right_hooked:
-		right_arm.look_at(right_thing_to_stick.global_position)
 
 func _input(event):
 	if event.is_action_pressed("boost"):
@@ -86,6 +82,11 @@ func aim_arms():
 		$LeftArm.look_at(get_global_mouse_position()) 
 	if right_ready:
 		$RightArm.look_at(get_global_mouse_position()) 
+		
+	if left_hooked:
+		left_arm.look_at(left_thing_to_stick.global_position)
+	if right_hooked:
+		right_arm.look_at(right_thing_to_stick.global_position)
 
 func _on_attach(thing : StaticBody2D, distance_to_thing : float, side : String):
 	match side:
