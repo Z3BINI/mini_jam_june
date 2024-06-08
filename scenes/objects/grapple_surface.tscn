@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://biyda8lrfeidy"]
+
+[ext_resource type="Texture2D" uid="uid://cpi1udnskyfv" path="res://assets/rocks/RockPack128x128.png" id="1_gfqml"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y7jv2"]
+radius = 48.0
+height = 122.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xoad2"]
+radius = 54.0093
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4rq55"]
+polygon = PackedVector2Array(-63, -13, -63, -17, -59, -17, -59, -21, -55, -21, -55, -25, -51, -25, -51, -29, -46, -29, -46, -34, -42, -34, -42, -37, -34, -37, -34, -42, -29, -42, -30, -46, -21, -46, -21, -50, 20, -50, 20, -47, 24, -46, 25, -43, 37, -42, 42, -37, 49, -32, 59, -25, 64, -24, 66, -25, 43, -41, 26, -49, 18, -55, -21, -54, -41, -40, -64, -18, -63, -14)
+
+[node name="GrappleSurface" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1.90735e-06, -1.43051e-06)
+scale = Vector2(4.15741, 4.15741)
+texture = ExtResource("1_gfqml")
+region_enabled = true
+region_rect = Rect2(63.1412, 61.3388, 34.0441, 27.5301)
+
+[node name="Grappable4" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grappable4"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_y7jv2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xoad2")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_4rq55")
