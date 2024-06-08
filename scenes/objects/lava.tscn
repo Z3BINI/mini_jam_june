@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://chpbx5nn0gyqx"]
+
+[ext_resource type="Script" path="res://scripts/objects/lava.gd" id="1_1sl2j"]
+[ext_resource type="Texture2D" uid="uid://bdwl10ducacde" path="res://assets/lava/bottom.png" id="2_875yk"]
+[ext_resource type="Texture2D" uid="uid://caj5gga128p2k" path="res://assets/lava/top.png" id="3_s4hfv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8do4"]
+size = Vector2(1.02344, 1.11719)
+
+[sub_resource type="Animation" id="Animation_li37q"]
+resource_name = "default"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.261799, 0.0, -0.261799]
+}
+
+[sub_resource type="Animation" id="Animation_mnvsl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8w5hh"]
+_data = {
+"RESET": SubResource("Animation_mnvsl"),
+"default": SubResource("Animation_li37q")
+}
+
+[node name="Lava" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_1sl2j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.0117188, 0.324219)
+shape = SubResource("RectangleShape2D_a8do4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.0117188, 0.351562)
+scale = Vector2(0.0039978, 0.00436401)
+texture = ExtResource("2_875yk")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0.0078125, -0.46875)
+scale = Vector2(0.00631934, 0.004)
+texture = ExtResource("3_s4hfv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8w5hh")
+}
+autoplay = "default"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
