@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://chpbx5nn0gyqx"]
+[gd_scene load_steps=9 format=3 uid="uid://chpbx5nn0gyqx"]
 
 [ext_resource type="Script" path="res://scripts/objects/lava.gd" id="1_1sl2j"]
 [ext_resource type="Texture2D" uid="uid://bdwl10ducacde" path="res://assets/lava/bottom.png" id="2_875yk"]
 [ext_resource type="Texture2D" uid="uid://caj5gga128p2k" path="res://assets/lava/top.png" id="3_s4hfv"]
+[ext_resource type="Texture2D" uid="uid://dqa31nwsymshv" path="res://assets/ight_texture.webp" id="4_4xd6j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8do4"]
 size = Vector2(1.02344, 1.11719)
@@ -68,5 +69,13 @@ libraries = {
 "": SubResource("AnimationLibrary_8w5hh")
 }
 autoplay = "default"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -0.0507813)
+scale = Vector2(0.017848, 0.00665034)
+color = Color(1, 0.623529, 0.00392157, 1)
+range_z_max = 4096
+shadow_enabled = true
+texture = ExtResource("4_4xd6j")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

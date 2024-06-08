@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c70fmn0cl4qur"]
+[gd_scene load_steps=8 format=3 uid="uid://c70fmn0cl4qur"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="2_euy52"]
 [ext_resource type="Texture2D" uid="uid://cgoup5237bs31" path="res://icon.svg" id="3_1ljuk"]
@@ -17,6 +17,9 @@ colors = PackedColorArray(1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_wsuw4"]
 gradient = SubResource("Gradient_p0yrq")
 width = 64
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_c57qy"]
+polygon = PackedVector2Array(-59, -58, -59, 59, 58, 60, 60, -59)
 
 [node name="Player" type="RigidBody2D" groups=["player"]]
 collision_mask = 2
@@ -65,5 +68,8 @@ rotation = 3.14159
 [node name="RightSpring" type="DampedSpringJoint2D" parent="RightArm"]
 rotation = -1.5708
 node_a = NodePath("../..")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_c57qy")
 
 [connection signal="attach" from="." to="." method="_on_attach"]
