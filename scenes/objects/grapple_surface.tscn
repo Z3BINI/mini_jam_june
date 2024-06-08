@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://biyda8lrfeidy"]
+[gd_scene load_steps=6 format=3 uid="uid://biyda8lrfeidy"]
 
+[ext_resource type="Script" path="res://scripts/objects/grapple_surface.gd" id="1_81o47"]
 [ext_resource type="Texture2D" uid="uid://cpi1udnskyfv" path="res://assets/rocks/RockPack128x128.png" id="1_gfqml"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y7jv2"]
@@ -15,6 +16,7 @@ polygon = PackedVector2Array(-63, -13, -63, -17, -59, -17, -59, -21, -55, -21, -
 [node name="GrappleSurface" type="StaticBody2D"]
 collision_layer = 0
 collision_mask = 0
+script = ExtResource("1_81o47")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
