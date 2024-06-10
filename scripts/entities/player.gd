@@ -50,17 +50,32 @@ func _input(event):
 		# SLOWLY LONGEN THE LINE AND THEN USE THE LENGTH
 		# AS A MULTIPLIER TO THE IMPULSE TO PROMOTE WAITING FOR LONG LINE
 		
-		if can_boost:
-			if linear_velocity.y > 0:
-				linear_velocity = Vector2.ZERO
-			apply_central_impulse(Vector2.UP * JUMP_FORCE)
-			boost_cd.emit()
+		if (!left_hooked and !right_hooked):
+			if can_boost:
+				if linear_velocity.y > 0:
+					linear_velocity = Vector2.ZERO
+				apply_central_impulse(Vector2.UP * JUMP_FORCE)
+				boost_cd.emit()
+		else:
+			if left_hooked:
+				left_spring.node_b = NodePath("")
+			
+				left_hooked = false
+				
+				detach.emit("left")
+			if right_hooked:
+				right_spring.node_b = NodePath("")
+			
+				right_hooked = false
+			
+				detach.emit("right")
+				
 	
 	if event.is_action_pressed("shoot_grapple_left"):
 		if left_ready:
 			left_ready = false
 			
-			var grapple_hook : GrapplePoint = grapple_point.instantiate()
+			var grapple_hook : GrapplePoint        = grapple_point.instantiate()
 			var shoot_dir : Vector2 = (get_global_mouse_position() - left_grapple_spawn.global_position).normalized()
 			
 			grapple_hook.shoot_dir = shoot_dir
