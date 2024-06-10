@@ -1,11 +1,18 @@
 class_name Player extends RigidBody2D
 
 @export var MOVE_FORCE : float = 1000
+@export var JUMP_FORCE : float = 750
+@export var GRAPPLE_FORCE : float = 1500
+
+@export var BOOST_CD : float = 2.5
 
 signal attach(thing : StaticBody2D, distance_to_thing : float, side : String)
 signal detach(side : String)
+signal boost_cd
 
 var grapple_point : PackedScene = preload("res://scenes/objects/grapple_point.tscn")
+
+var can_boost : bool = true
 
 var left_ready : bool = true
 var right_ready : bool = true
@@ -40,7 +47,14 @@ func _physics_process(_delta : float) -> void:
 
 func _input(event):
 	if event.is_action_pressed("boost"):
-		apply_central_impulse(Vector2.UP * 1000)
+		# SLOWLY LONGEN THE LINE AND THEN USE THE LENGTH
+		# AS A MULTIPLIER TO THE IMPULSE TO PROMOTE WAITING FOR LONG LINE
+		
+		if can_boost:
+			if linear_velocity.y > 0:
+				linear_velocity = Vector2.ZERO
+			apply_central_impulse(Vector2.UP * JUMP_FORCE)
+			boost_cd.emit()
 	
 	if event.is_action_pressed("shoot_grapple_left"):
 		if left_ready:
@@ -57,7 +71,11 @@ func _input(event):
 		elif left_hooked:
 			
 			left_spring.node_b = NodePath("")
+			
 			left_hooked = false
+			
+			apply_central_impulse((left_thing_to_stick.global_position - left_grapple_spawn.global_position).normalized() * GRAPPLE_FORCE) 
+			
 			detach.emit("left")
 			
 	if event.is_action_pressed("shoot_grapple_right"):
@@ -74,7 +92,11 @@ func _input(event):
 			
 		elif right_hooked:
 			right_spring.node_b = NodePath("")
+			
 			right_hooked = false
+			
+			apply_central_impulse((right_thing_to_stick.global_position - right_grapple_spawn.global_position).normalized() * GRAPPLE_FORCE)
+			
 			detach.emit("right")
 
 func aim_arms():
@@ -102,3 +124,8 @@ func _on_attach(thing : StaticBody2D, distance_to_thing : float, side : String):
 			right_spring.rest_length = distance_to_thing * 0.75
 			right_spring.node_b = right_thing_to_stick.get_path()
 			right_hooked = true
+
+func _on_boost_cd():
+	can_boost = false
+	await get_tree().create_timer(BOOST_CD).timeout
+	can_boost = true
