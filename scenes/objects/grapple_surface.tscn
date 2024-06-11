@@ -3,28 +3,31 @@
 [ext_resource type="Script" path="res://scripts/objects/grapple_surface.gd" id="1_81o47"]
 [ext_resource type="Texture2D" uid="uid://cpi1udnskyfv" path="res://assets/rocks/RockPack128x128.png" id="1_gfqml"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y7jv2"]
-radius = 53.0
-height = 144.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_xoad2"]
-radius = 54.0093
+radius = 25.9615
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y7jv2"]
+radius = 28.0
+height = 70.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4rq55"]
-polygon = PackedVector2Array(-63, -13, -63, -17, -59, -17, -59, -21, -55, -21, -55, -25, -51, -25, -51, -29, -46, -29, -46, -34, -42, -34, -42, -37, -34, -37, -34, -42, -29, -42, -30, -46, -21, -46, -21, -50, 20, -50, 20, -47, 24, -46, 25, -43, 37, -42, 42, -37, 49, -32, 59, -25, 64, -24, 66, -25, 43, -41, 26, -49, 18, -55, -21, -54, -41, -40, -64, -18, -63, -14)
+polygon = PackedVector2Array(-32, -6, -31, -6, -31, -8, -29, -8, -29, -9, -19, -19, -17, -19, -15, -21, -13, -23, -9, -25, 9, -25, 13, -21, 17, -21, 19, -19, 21, -19, 23, -17, 25, -17, 30, -12, 30, -11, 31, -11, 31, -12, 25, -18, 23, -18, 21, -20, 19, -20, 17, -22, 13, -22, 9, -26, -9, -26, -14, -23, -17, -20, -20, -20, -32, -8)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mr3pl"]
-radius = 505.001
+radius = 317.191
 
 [node name="GrappleSurface" type="StaticBody2D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_81o47")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xoad2")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-1.90735e-06, -1.43051e-06)
-scale = Vector2(4.15741, 4.15741)
+scale = Vector2(2, 2)
 texture = ExtResource("1_gfqml")
 region_enabled = true
 region_rect = Rect2(63.1412, 61.3388, 34.0441, 27.5301)
@@ -36,9 +39,6 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grappable4"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_y7jv2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_xoad2")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_4rq55")
