@@ -72,5 +72,8 @@ rotation = 3.14159
 rotation = -1.5708
 node_a = NodePath("../..")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
 [connection signal="attach" from="." to="." method="_on_attach"]
 [connection signal="boost_cd" from="." to="." method="_on_boost_cd"]
