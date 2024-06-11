@@ -44,14 +44,17 @@ func _physics_process(delta):
 				"left":
 					return_direction = (player.left_grapple_spawn.global_position - global_position).normalized()
 					
-					$TextureRect.global_position = player.left_grapple_spawn.global_position
+					
 				"right":
 					return_direction = (player.right_grapple_spawn.global_position - global_position).normalized()
-					
-					$TextureRect.global_position = player.right_grapple_spawn.global_position
 			
 			global_position += return_direction * (TRAVEL_SPEED * 2) * delta
 			distance_travelled -= (TRAVEL_SPEED * 2) * delta
+			
+			if current_side == "left":
+				$TextureRect.global_position = player.left_grapple_spawn.global_position
+			elif current_side == "right":
+				$TextureRect.global_position = player.right_grapple_spawn.global_position
 			
 			$TextureRect.size.x -= (TRAVEL_SPEED * 2) * delta
 			
