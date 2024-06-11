@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://buy4xr83a77hq"]
+[gd_scene load_steps=6 format=3 uid="uid://buy4xr83a77hq"]
 
 [ext_resource type="Script" path="res://scripts/objects/grapple_point.gd" id="1_5d4jl"]
+[ext_resource type="Texture2D" uid="uid://dqa31nwsymshv" path="res://assets/ight_texture.webp" id="2_vcjqx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8bdbw"]
 radius = 4.0
@@ -31,5 +32,9 @@ offset_bottom = 6.0
 rotation = 3.14159
 texture = SubResource("GradientTexture1D_jbi6w")
 expand_mode = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("2_vcjqx")
+texture_scale = 15.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
