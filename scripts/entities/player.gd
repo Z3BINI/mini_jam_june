@@ -75,7 +75,7 @@ func _input(event):
 		if left_ready:
 			left_ready = false
 			
-			var grapple_hook : GrapplePoint        = grapple_point.instantiate()
+			var grapple_hook : GrapplePoint = grapple_point.instantiate()
 			var shoot_dir : Vector2 = (get_global_mouse_position() - left_grapple_spawn.global_position).normalized()
 			
 			grapple_hook.shoot_dir = shoot_dir
@@ -126,16 +126,16 @@ func aim_arms():
 		right_arm.look_at(right_thing_to_stick.global_position)
 
 func _on_attach(thing : StaticBody2D, distance_to_thing : float, side : String):
-	match side:
+	match side: 
 		"left":
 			left_thing_to_stick = thing
-			left_spring.length = distance_to_thing
+			left_spring.length = distance_to_thing * 1.5
 			left_spring.rest_length = distance_to_thing * 0.75
 			left_spring.node_b = left_thing_to_stick.get_path()
 			left_hooked = true
 		"right":
 			right_thing_to_stick = thing
-			right_spring.length = distance_to_thing
+			right_spring.length = distance_to_thing * 1.5
 			right_spring.rest_length = distance_to_thing * 0.75
 			right_spring.node_b = right_thing_to_stick.get_path()
 			right_hooked = true
