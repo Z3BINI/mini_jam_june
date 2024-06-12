@@ -5,6 +5,7 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0g80w"]
 friction = 0.25
+bounce = 1.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q8prq"]
 radius = 29.0
@@ -71,9 +72,6 @@ rotation = 3.14159
 [node name="RightSpring" type="DampedSpringJoint2D" parent="RightArm"]
 rotation = -1.5708
 node_a = NodePath("../..")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
 
 [connection signal="attach" from="." to="." method="_on_attach"]
 [connection signal="boost_cd" from="." to="." method="_on_boost_cd"]
