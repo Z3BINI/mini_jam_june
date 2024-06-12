@@ -1,18 +1,14 @@
-extends StaticBody2D
+class_name GrappleSurface extends StaticBody2D
 
-var lava : Area2D
+
 var player : Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	lava = get_tree().get_first_node_in_group("lava")
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	
-	if global_position.y > lava.global_position.y + 55:
-		queue_free()
-	
 	if player and (player.left_hooked or player.right_hooked):
 		Engine.time_scale = 1
 
