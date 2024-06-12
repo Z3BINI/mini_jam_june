@@ -1,5 +1,7 @@
 extends Node2D
 
+var surface_spawn : PackedScene = load("res://scenes/objects/surface_spawn.tscn")
+
 var platform_holder : Node
 var spawn_positions : Array
 var lava : Area2D
@@ -26,7 +28,7 @@ func _process(delta):
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
 	if !have_spawned_neighbour:
-		var new_surface = self.duplicate(8)
+		var new_surface = surface_spawn.instantiate()
 		new_surface.global_position.y = global_position.y - 960
 		
 		platform_holder.add_child(new_surface)
@@ -38,7 +40,7 @@ func randomize_spawn_pos():
 	
 	
 	for spawn in spawn_positions:
-		spawn.position += Vector2(randf_range(-50, 50), randf_range(-50, 50))
+		spawn.position += Vector2(randf_range(-100, 100), randf_range(-100, 100))
 
 func fill_spawn_pos():
 	
