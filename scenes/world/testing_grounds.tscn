@@ -1,29 +1,56 @@
-[gd_scene load_steps=4 format=3 uid="uid://y2c83o11ef3t"]
+[gd_scene load_steps=9 format=3 uid="uid://y2c83o11ef3t"]
 
+[ext_resource type="PackedScene" uid="uid://brvps4skk1rlq" path="res://scenes/objects/background.tscn" id="1_ar7hs"]
+[ext_resource type="Script" path="res://scripts/level/level.gd" id="1_yjqnx"]
 [ext_resource type="PackedScene" uid="uid://c70fmn0cl4qur" path="res://scenes/entities/player.tscn" id="2_0gv5v"]
 [ext_resource type="PackedScene" uid="uid://chpbx5nn0gyqx" path="res://scenes/objects/lava.tscn" id="3_n7ekt"]
 [ext_resource type="PackedScene" uid="uid://biyda8lrfeidy" path="res://scenes/objects/grapple_surface.tscn" id="3_tbmlx"]
+[ext_resource type="PackedScene" uid="uid://d4jp7mctla63m" path="res://scenes/objects/surface_spawn.tscn" id="6_rp7rj"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cy2a0"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6o6q"]
+size = Vector2(57, 1213)
 
 [node name="TestingGrounds" type="Node2D"]
+script = ExtResource("1_yjqnx")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.105646, 0.0195396, 0, 1)
 
-[node name="BackgroundColorTMP" type="ColorRect" parent="."]
-offset_left = -3727.0
-offset_top = -3373.0
-offset_right = -1807.0
-offset_bottom = -2293.0
-scale = Vector2(3.6, 7.8)
-color = Color(0.166464, 1.51913e-07, 3.00817e-09, 1)
+[node name="Background" parent="." instance=ExtResource("1_ar7hs")]
 
 [node name="Player" parent="." instance=ExtResource("2_0gv5v")]
 position = Vector2(0, -1484)
 
-[node name="Platforms" type="Node" parent="."]
+[node name="Platforms" type="Node" parent="." groups=["platforms"]]
 
 [node name="StaticBody2D" parent="Platforms" instance=ExtResource("3_tbmlx")]
-position = Vector2(0, -724)
+position = Vector2(0, -584)
+
+[node name="SurfaceSpawn" parent="Platforms" instance=ExtResource("6_rp7rj")]
+position = Vector2(0, -2924)
 
 [node name="Lava" parent="." instance=ExtResource("3_n7ekt")]
 position = Vector2(3, 48)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Camera2D"]
+position = Vector2(-480, 0)
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_cy2a0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/StaticBody2D"]
+position = Vector2(-0.5, -28.5)
+shape = SubResource("RectangleShape2D_d6o6q")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Camera2D"]
+position = Vector2(480, 0)
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_cy2a0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/StaticBody2D2"]
+position = Vector2(-0.5, -28.5)
+shape = SubResource("RectangleShape2D_d6o6q")
