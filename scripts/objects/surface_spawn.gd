@@ -45,6 +45,14 @@ func randomize_spawn_pos():
 func fill_spawn_pos():
 	
 	for spawn in spawn_positions:
-		var grappable_surface = preload("res://scenes/objects/grapple_surface.tscn").instantiate()
-		grappable_surface.rotate(randi_range(0, 360))
-		spawn.add_child(grappable_surface)
+		var chance_detector : float = randf()
+		var surface : Node
+		
+		if chance_detector <= 0.8:
+			surface = preload("res://scenes/objects/grapple_surface.tscn").instantiate()
+		else:
+			surface = preload("res://scenes/objects/damage_surface.tscn").instantiate()
+		
+		surface.rotate(randi_range(0, 360))
+		
+		spawn.add_child(surface)
