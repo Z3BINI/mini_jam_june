@@ -153,13 +153,13 @@ func disable_side(side : String):
 			left_arm.visible = false
 			await get_tree().create_timer(DISABLE_CD).timeout
 			
-			left_ready = true
 			left_arm.visible = true
+			left_ready = true
 		"right":
 			right_ready = false
 			right_arm.visible = false
 			await get_tree().create_timer(DISABLE_CD).timeout
 			
-			right_ready = true
 			right_arm.visible = true
+			right_ready = true
 	
