@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://y2c83o11ef3t"]
+[gd_scene load_steps=10 format=3 uid="uid://y2c83o11ef3t"]
 
 [ext_resource type="PackedScene" uid="uid://brvps4skk1rlq" path="res://scenes/objects/background.tscn" id="1_ar7hs"]
 [ext_resource type="Script" path="res://scripts/level/level.gd" id="1_yjqnx"]
 [ext_resource type="PackedScene" uid="uid://c70fmn0cl4qur" path="res://scenes/entities/player.tscn" id="2_0gv5v"]
 [ext_resource type="PackedScene" uid="uid://chpbx5nn0gyqx" path="res://scenes/objects/lava.tscn" id="3_n7ekt"]
 [ext_resource type="PackedScene" uid="uid://biyda8lrfeidy" path="res://scenes/objects/grapple_surface.tscn" id="3_tbmlx"]
+[ext_resource type="PackedScene" uid="uid://by5bb5s4rewjg" path="res://scenes/objects/damage_surface.tscn" id="6_fx7io"]
 [ext_resource type="PackedScene" uid="uid://d4jp7mctla63m" path="res://scenes/objects/surface_spawn.tscn" id="6_rp7rj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cy2a0"]
@@ -31,6 +32,9 @@ position = Vector2(0, -584)
 
 [node name="SurfaceSpawn" parent="Platforms" instance=ExtResource("6_rp7rj")]
 position = Vector2(0, -2924)
+
+[node name="DamageSurface" parent="Platforms" instance=ExtResource("6_fx7io")]
+position = Vector2(324, -544)
 
 [node name="Lava" parent="." instance=ExtResource("3_n7ekt")]
 position = Vector2(3, 48)

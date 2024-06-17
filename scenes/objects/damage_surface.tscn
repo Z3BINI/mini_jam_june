@@ -1,0 +1,118 @@
+[gd_scene load_steps=16 format=3 uid="uid://by5bb5s4rewjg"]
+
+[ext_resource type="Script" path="res://scripts/objects/damage_surface.gd" id="1_aji4p"]
+[ext_resource type="Texture2D" uid="uid://cltobnqvmvnaj" path="res://assets/saw/saw.png" id="2_mmqkt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xoad2"]
+radius = 25.9615
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4tqm"]
+atlas = ExtResource("2_mmqkt")
+region = Rect2(0, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lt8gw"]
+atlas = ExtResource("2_mmqkt")
+region = Rect2(38, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3ddu"]
+atlas = ExtResource("2_mmqkt")
+region = Rect2(76, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usaxx"]
+atlas = ExtResource("2_mmqkt")
+region = Rect2(114, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mx6j"]
+atlas = ExtResource("2_mmqkt")
+region = Rect2(152, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7q74o"]
+atlas = ExtResource("2_mmqkt")
+region = Rect2(190, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gegp"]
+atlas = ExtResource("2_mmqkt")
+region = Rect2(228, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pglf"]
+atlas = ExtResource("2_mmqkt")
+region = Rect2(266, 0, 38, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rvmci"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4tqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lt8gw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3ddu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usaxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mx6j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7q74o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gegp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pglf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y7jv2"]
+radius = 28.0
+height = 70.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4rq55"]
+polygon = PackedVector2Array(-32, -6, -31, -6, -31, -8, -29, -8, -29, -9, -19, -19, -17, -19, -15, -21, -13, -23, -9, -25, 9, -25, 13, -21, 17, -21, 19, -19, 21, -19, 23, -17, 25, -17, 30, -12, 30, -11, 31, -11, 31, -12, 25, -18, 23, -18, 21, -20, 19, -20, 17, -22, 13, -22, 9, -26, -9, -26, -14, -23, -17, -20, -20, -20, -32, -8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mr3pl"]
+radius = 317.191
+
+[node name="DamageSurface" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_aji4p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xoad2")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1.90735e-06, -1.43051e-06)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_rvmci")
+autoplay = "default"
+frame_progress = 0.559962
+
+[node name="Grappable4" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grappable4"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_y7jv2")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_4rq55")
+
+[node name="SlowTimeCheck" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlowTimeCheck"]
+shape = SubResource("CircleShape2D_mr3pl")
+
+[connection signal="area_entered" from="Grappable4" to="." method="_on_grappable_4_area_entered"]
+[connection signal="body_entered" from="SlowTimeCheck" to="." method="_on_slow_time_check_body_entered"]
+[connection signal="body_exited" from="SlowTimeCheck" to="." method="_on_slow_time_check_body_exited"]

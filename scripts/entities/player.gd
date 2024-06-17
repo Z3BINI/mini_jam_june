@@ -5,6 +5,7 @@ class_name Player extends RigidBody2D
 @export var GRAPPLE_FORCE : float = 1500
 
 @export var BOOST_CD : float = 2.5
+@export var DISABLE_CD : float = 2
 
 signal attach(thing : StaticBody2D, distance_to_thing : float, side : String)
 signal detach(side : String)
@@ -144,3 +145,21 @@ func _on_boost_cd():
 	can_boost = false
 	await get_tree().create_timer(BOOST_CD).timeout
 	can_boost = true
+	
+func disable_side(side : String):
+	match side:
+		"left":
+			left_ready = false
+			left_arm.visible = false
+			await get_tree().create_timer(DISABLE_CD).timeout
+			
+			left_ready = true
+			left_arm.visible = true
+		"right":
+			right_ready = false
+			right_arm.visible = false
+			await get_tree().create_timer(DISABLE_CD).timeout
+			
+			right_ready = true
+			right_arm.visible = true
+	
