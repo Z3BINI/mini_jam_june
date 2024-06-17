@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c70fmn0cl4qur"]
+[gd_scene load_steps=9 format=3 uid="uid://c70fmn0cl4qur"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="2_euy52"]
 [ext_resource type="Texture2D" uid="uid://cgoup5237bs31" path="res://icon.svg" id="3_1ljuk"]
+[ext_resource type="Texture2D" uid="uid://dqa31nwsymshv" path="res://assets/ight_texture.webp" id="3_mpv0l"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0g80w"]
 friction = 0.25
@@ -72,6 +73,12 @@ rotation = 3.14159
 [node name="RightSpring" type="DampedSpringJoint2D" parent="RightArm"]
 rotation = -1.5708
 node_a = NodePath("../..")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -24)
+energy = 0.5
+texture = ExtResource("3_mpv0l")
+texture_scale = 5.0
 
 [connection signal="attach" from="." to="." method="_on_attach"]
 [connection signal="boost_cd" from="." to="." method="_on_boost_cd"]
