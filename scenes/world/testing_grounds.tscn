@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://y2c83o11ef3t"]
+[gd_scene load_steps=11 format=3 uid="uid://y2c83o11ef3t"]
 
 [ext_resource type="PackedScene" uid="uid://brvps4skk1rlq" path="res://scenes/objects/background.tscn" id="1_ar7hs"]
 [ext_resource type="Script" path="res://scripts/level/level.gd" id="1_yjqnx"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://biyda8lrfeidy" path="res://scenes/objects/grapple_surface.tscn" id="3_tbmlx"]
 [ext_resource type="PackedScene" uid="uid://by5bb5s4rewjg" path="res://scenes/objects/damage_surface.tscn" id="6_fx7io"]
 [ext_resource type="PackedScene" uid="uid://d4jp7mctla63m" path="res://scenes/objects/surface_spawn.tscn" id="6_rp7rj"]
+[ext_resource type="PackedScene" uid="uid://dsbsq6380q8dh" path="res://scenes/objects/falling_obstacle.tscn" id="8_jkapk"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cy2a0"]
 friction = 0.0
@@ -58,3 +59,6 @@ physics_material_override = SubResource("PhysicsMaterial_cy2a0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/StaticBody2D2"]
 position = Vector2(-0.5, -28.5)
 shape = SubResource("RectangleShape2D_d6o6q")
+
+[node name="FallingObstacle" parent="." instance=ExtResource("8_jkapk")]
+position = Vector2(6, -1835)

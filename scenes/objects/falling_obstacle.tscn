@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsbsq6380q8dh"]
+
+[ext_resource type="Texture2D" uid="uid://cpi1udnskyfv" path="res://assets/rocks/RockPack128x128.png" id="1_7nasg"]
+[ext_resource type="Texture2D" uid="uid://dqa31nwsymshv" path="res://assets/ight_texture.webp" id="2_4ju5a"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ejws7"]
+rough = true
+bounce = 0.25
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uebyn"]
+radius = 27.0185
+
+[node name="FallingObstacle" type="RigidBody2D"]
+collision_layer = 2
+mass = 2.5
+physics_material_override = SubResource("PhysicsMaterial_ejws7")
+angular_velocity = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("1_7nasg")
+region_enabled = true
+region_rect = Rect2(19.5924, 6.7021, 14.8644, 13.6482)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uebyn")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.5
+texture = ExtResource("2_4ju5a")
+texture_scale = 2.5

@@ -5,6 +5,17 @@
 [node name="SurfaceSpawn" type="Node2D"]
 script = ExtResource("1_rqgru")
 
+[node name="DropZone" type="Node2D" parent="."]
+position = Vector2(0, -1080)
+
+[node name="Marker2D" type="Marker2D" parent="DropZone"]
+position = Vector2(-345, 0)
+
+[node name="Marker2D2" type="Marker2D" parent="DropZone"]
+
+[node name="Marker2D3" type="Marker2D" parent="DropZone"]
+position = Vector2(359, 0)
+
 [node name="Surfaces" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="Surfaces"]
