@@ -2,6 +2,8 @@ extends Area2D
 
 signal player_died
 
+@onready var fart_sound = $FartSound
+
 @export var RISE_SPEED : float = 25
 
 var player : Player
@@ -18,4 +20,5 @@ func _physics_process(delta):
 
 func _on_body_entered(body : Player):
 	player_died.emit()
+	fart_sound.play()
 	print("Game Over!")
