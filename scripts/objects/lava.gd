@@ -2,6 +2,9 @@ extends Area2D
 
 signal player_died
 
+# Reference to the AudioStreamPlayer node
+@onready var fart_sound = $FartSound
+
 @export var RISE_SPEED : float = 25
 
 var player : Player
@@ -17,5 +20,6 @@ func _physics_process(delta):
 	global_position.y -= RISE_SPEED * delta
 
 func _on_body_entered(body : Player):
+	fart_sound.play()  # Play the fart sound
 	player_died.emit()
 	print("Game Over!")
