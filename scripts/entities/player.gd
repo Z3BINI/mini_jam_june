@@ -10,10 +10,13 @@ class_name Player extends RigidBody2D
 signal attach(thing : StaticBody2D, distance_to_thing : float, side : String)
 signal detach(side : String)
 signal boost_cd
+signal attached
 
 var grapple_point : PackedScene = preload("res://scenes/objects/grapple_point.tscn")
 
 var can_boost : bool = true
+
+var slow_motioned : bool = false
 
 var left_ready : bool = true
 var right_ready : bool = true
@@ -140,6 +143,7 @@ func _on_attach(thing : StaticBody2D, distance_to_thing : float, side : String):
 			right_spring.rest_length = distance_to_thing * 0.75
 			right_spring.node_b = right_thing_to_stick.get_path()
 			right_hooked = true
+	attached.emit()
 
 func _on_boost_cd():
 	can_boost = false

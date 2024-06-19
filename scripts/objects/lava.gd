@@ -1,4 +1,4 @@
-extends Area2D
+class_name Lava extends Area2D
 
 signal player_died
 

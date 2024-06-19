@@ -15,7 +15,7 @@ friction = 0.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d6o6q"]
 size = Vector2(57, 1213)
 
-[node name="TestingGrounds" type="Node2D"]
+[node name="TestingGrounds" type="Node2D" groups=["level"]]
 script = ExtResource("1_yjqnx")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -62,3 +62,7 @@ shape = SubResource("RectangleShape2D_d6o6q")
 
 [node name="FallingObstacle" parent="." instance=ExtResource("8_jkapk")]
 position = Vector2(6, -1835)
+
+[connection signal="attached" from="Player" to="." method="_on_surface_normal_mo"]
+[connection signal="normal_mo" from="Platforms/StaticBody2D" to="." method="_on_surface_normal_mo"]
+[connection signal="slow_mo" from="Platforms/StaticBody2D" to="." method="_on_surface_slow_mo"]

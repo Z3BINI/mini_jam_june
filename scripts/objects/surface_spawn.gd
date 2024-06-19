@@ -6,6 +6,7 @@ var platform_holder : Node
 var spawn_positions : Array
 var drop_spawn_positions : Array
 var lava : Area2D
+var level : Node
 
 var have_spawned_neighbour : bool = false
 
@@ -15,6 +16,7 @@ var have_spawned_neighbour : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	level = get_tree().get_first_node_in_group("level")
 	lava = get_tree().get_first_node_in_group("lava")
 	platform_holder = get_tree().get_first_node_in_group("platforms")
 	spawn_positions = surfaces.get_children()
@@ -61,6 +63,9 @@ func fill_spawn_pos():
 			surface = preload("res://scenes/objects/damage_surface.tscn").instantiate()
 		
 		surface.rotate(randi_range(0, 360))
+		
+		surface.slow_mo.connect(level._on_surface_slow_mo)
+		surface.normal_mo.connect(level._on_surface_normal_mo)
 		
 		spawn.add_child(surface)
 
