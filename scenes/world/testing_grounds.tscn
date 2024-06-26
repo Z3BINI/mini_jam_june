@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://y2c83o11ef3t"]
+[gd_scene load_steps=12 format=3 uid="uid://y2c83o11ef3t"]
 
 [ext_resource type="PackedScene" uid="uid://brvps4skk1rlq" path="res://scenes/objects/background.tscn" id="1_ar7hs"]
 [ext_resource type="Script" path="res://scripts/level/level.gd" id="1_yjqnx"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://by5bb5s4rewjg" path="res://scenes/objects/damage_surface.tscn" id="6_fx7io"]
 [ext_resource type="PackedScene" uid="uid://d4jp7mctla63m" path="res://scenes/objects/surface_spawn.tscn" id="6_rp7rj"]
 [ext_resource type="PackedScene" uid="uid://dsbsq6380q8dh" path="res://scenes/objects/falling_obstacle.tscn" id="8_jkapk"]
+[ext_resource type="Texture2D" uid="uid://ca06l6jarfl63" path="res://assets/lava/sides.png" id="9_mesqp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cy2a0"]
 friction = 0.0
@@ -64,6 +65,18 @@ shape = SubResource("RectangleShape2D_d6o6q")
 
 [node name="FallingObstacle" parent="." instance=ExtResource("8_jkapk")]
 position = Vector2(6, -1835)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Sides" type="Sprite2D" parent="UI"]
+position = Vector2(18, 540)
+texture = ExtResource("9_mesqp")
+
+[node name="Sides2" type="Sprite2D" parent="UI"]
+position = Vector2(943, 540)
+texture = ExtResource("9_mesqp")
+flip_h = true
+flip_v = true
 
 [connection signal="attached" from="Player" to="." method="_on_surface_normal_mo"]
 [connection signal="normal_mo" from="Platforms/StaticBody2D" to="." method="_on_surface_normal_mo"]
