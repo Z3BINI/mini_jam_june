@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://y2c83o11ef3t"]
+[gd_scene load_steps=13 format=3 uid="uid://y2c83o11ef3t"]
 
 [ext_resource type="PackedScene" uid="uid://brvps4skk1rlq" path="res://scenes/objects/background.tscn" id="1_ar7hs"]
 [ext_resource type="Script" path="res://scripts/level/level.gd" id="1_yjqnx"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d4jp7mctla63m" path="res://scenes/objects/surface_spawn.tscn" id="6_rp7rj"]
 [ext_resource type="PackedScene" uid="uid://dsbsq6380q8dh" path="res://scenes/objects/falling_obstacle.tscn" id="8_jkapk"]
 [ext_resource type="Texture2D" uid="uid://ca06l6jarfl63" path="res://assets/lava/sides.png" id="9_mesqp"]
+[ext_resource type="Script" path="res://scripts/level/UI.gd" id="9_w2c7h"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cy2a0"]
 friction = 0.0
@@ -67,6 +68,7 @@ shape = SubResource("RectangleShape2D_d6o6q")
 position = Vector2(6, -1835)
 
 [node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("9_w2c7h")
 
 [node name="Sides" type="Sprite2D" parent="UI"]
 position = Vector2(18, 540)
@@ -77,6 +79,55 @@ position = Vector2(943, 540)
 texture = ExtResource("9_mesqp")
 flip_h = true
 flip_v = true
+
+[node name="Label" type="Label" parent="UI"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Distance travelled: "
+
+[node name="Distance" type="Label" parent="UI"]
+offset_left = 147.0
+offset_right = 295.0
+offset_bottom = 23.0
+text = "96"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 230.0
+offset_top = -503.0
+offset_right = 425.0
+offset_bottom = -428.0
+text = "IF YOU HIT THESE
+THEY BREAK YOUR 
+ARM!"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -99.0
+offset_top = -1150.0
+offset_right = 96.0
+offset_bottom = -1075.0
+text = "AIM YOUR ARMS
+WITH MOUSE 
+CURSOR!"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+offset_left = -92.0
+offset_top = -550.0
+offset_right = 103.0
+offset_bottom = -475.0
+text = "L.MB SHOOTS LEFT
+R.MB SHOOTS RIGHT"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="."]
+offset_left = -92.0
+offset_top = -313.0
+offset_right = 103.0
+offset_bottom = -238.0
+text = "PRESS AGAIN TO BOLT!
+(BOTH = MORE POWER)"
+horizontal_alignment = 1
 
 [connection signal="attached" from="Player" to="." method="_on_surface_normal_mo"]
 [connection signal="normal_mo" from="Platforms/StaticBody2D" to="." method="_on_surface_normal_mo"]

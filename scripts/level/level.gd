@@ -14,7 +14,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	camera_2d.global_position.y = player.global_position.y
-	print(Engine.time_scale)
 	match slow_time:
 		true:
 			if Engine.time_scale != slow_amount:
