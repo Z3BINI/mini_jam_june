@@ -12,7 +12,15 @@ signal detach(side : String)
 signal boost_cd
 signal attached
 
+var shoot_grapple_sfx : AudioStream = load("res://assets/audio/grapple_whoosh.mp3")
+var grapple_attch_sfx : AudioStream = load("res://assets/audio/grapple_hook.mp3")
+var grapple_break_sfx : AudioStream = load("res://assets/audio/broken_hook.mp3")
+var player_bounce_sfx : AudioStream = load("res://assets/audio/boing.mp3")
+var player_woosh_sfx : AudioStream = load("res://assets/audio/player_woosh.mp3")
+
 var grapple_point : PackedScene = preload("res://scenes/objects/grapple_point.tscn")
+
+var died : bool = false
 
 var can_boost : bool = true
 
@@ -43,6 +51,8 @@ func _ready() -> void:
 func _physics_process(_delta : float) -> void:
 	aim_arms()
 	
+	if died: linear_velocity = Vector2.ZERO 
+	
 	var input_direction : float = Input.get_axis("move_left", "move_right")
 	
 	if input_direction and !sleeping:
@@ -64,13 +74,13 @@ func _input(event):
 			else:
 				if left_hooked:
 					left_spring.node_b = NodePath("")
-				
+					left_thing_to_stick = null
 					left_hooked = false
 					
 					detach.emit("left")
 				if right_hooked:
 					right_spring.node_b = NodePath("")
-				
+					right_thing_to_stick = null
 					right_hooked = false
 				
 					detach.emit("right")
@@ -78,6 +88,7 @@ func _input(event):
 		
 		if event.is_action_pressed("shoot_grapple_left"):
 			if left_ready:
+				AudioManager.play_sfx(shoot_grapple_sfx, self, 0)
 				left_ready = false
 				
 				var grapple_hook : GrapplePoint = grapple_point.instantiate()
@@ -96,10 +107,15 @@ func _input(event):
 				
 				apply_central_impulse((left_thing_to_stick.global_position - left_grapple_spawn.global_position).normalized() * GRAPPLE_FORCE) 
 				
+				left_thing_to_stick = null
+				
 				detach.emit("left")
+				AudioManager.play_sfx(player_woosh_sfx, self, 0)
 				
 		if event.is_action_pressed("shoot_grapple_right"):
 			if right_ready:
+				AudioManager.play_sfx(shoot_grapple_sfx, self, 0)
+				
 				right_ready = false
 				var shoot_dir : Vector2 = (get_global_mouse_position() - right_grapple_spawn.global_position).normalized()
 				
@@ -109,7 +125,7 @@ func _input(event):
 				grapple_hook.current_side = "right"
 				
 				right_grapple_spawn.add_child(grapple_hook)
-				
+			
 			elif right_hooked:
 				right_spring.node_b = NodePath("")
 				
@@ -117,7 +133,10 @@ func _input(event):
 				
 				apply_central_impulse((right_thing_to_stick.global_position - right_grapple_spawn.global_position).normalized() * GRAPPLE_FORCE)
 				
+				right_thing_to_stick = null
+				
 				detach.emit("right")
+				AudioManager.play_sfx(player_woosh_sfx, self, 0)
 
 func aim_arms():
 	if left_ready:
@@ -131,6 +150,7 @@ func aim_arms():
 		right_arm.look_at(right_thing_to_stick.global_position)
 
 func _on_attach(thing : StaticBody2D, distance_to_thing : float, side : String):
+	AudioManager.play_sfx(grapple_attch_sfx, self, 0)
 	match side: 
 		"left":
 			left_thing_to_stick = thing
@@ -152,6 +172,7 @@ func _on_boost_cd():
 	can_boost = true
 	
 func disable_side(side : String):
+	AudioManager.play_sfx(grapple_break_sfx, self, 0)
 	match side:
 		"left":
 			left_ready = false
@@ -168,3 +189,8 @@ func disable_side(side : String):
 			right_arm.visible = true
 			right_ready = true
 	
+
+
+func _on_body_entered(body):
+	if (body.name == "Wall" or body.name == "Wall2"):
+		AudioManager.play_sfx(player_bounce_sfx, self , 0)

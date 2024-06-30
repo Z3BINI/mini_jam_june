@@ -26,6 +26,8 @@ width = 32
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_0g80w")
 lock_rotation = true
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("2_euy52")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -81,4 +83,5 @@ texture = ExtResource("3_mpv0l")
 texture_scale = 5.0
 
 [connection signal="attach" from="." to="." method="_on_attach"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="boost_cd" from="." to="." method="_on_boost_cd"]
