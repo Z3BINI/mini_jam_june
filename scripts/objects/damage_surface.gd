@@ -26,6 +26,18 @@ func _on_slow_time_check_body_exited(body : Player):
 		normal_mo.emit()
 		
 func _on_grappable_4_area_entered(area : GrapplePoint):
-	var pl = get_tree().get_first_node_in_group("player")
-	pl.disable_side(area.current_side)
-	area.queue_free()
+	var player : Player = get_tree().get_first_node_in_group("player")
+	
+	match area.current_side:
+		"left":
+			if player.left_thing_to_stick == null:
+				player.disable_side(area.current_side)
+				area.queue_free()
+		"right":
+			print(player.right_thing_to_stick)
+			if player.right_thing_to_stick == null:
+				player.disable_side(area.current_side)
+				area.queue_free()
+	
+	
+	
