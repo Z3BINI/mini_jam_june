@@ -31,3 +31,8 @@ func _on_surface_slow_mo(amount, time):
 func _on_surface_normal_mo():
 	player.slow_motioned = false
 	slow_time = false
+
+
+func _on_lava_player_died():
+	await get_tree().create_timer(3).timeout
+	get_tree().reload_current_scene()

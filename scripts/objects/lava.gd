@@ -18,4 +18,10 @@ func _physics_process(delta):
 
 func _on_body_entered(body : Player):
 	player_died.emit()
+	
+	body.linear_velocity = Vector2.ZERO
+	
+	body.freeze = true
+	body.sleeping = true
+	
 	print("Game Over!")

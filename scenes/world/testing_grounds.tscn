@@ -145,3 +145,4 @@ horizontal_alignment = 1
 [connection signal="attached" from="Player" to="." method="_on_surface_normal_mo"]
 [connection signal="normal_mo" from="Platforms/StaticBody2D" to="." method="_on_surface_normal_mo"]
 [connection signal="slow_mo" from="Platforms/StaticBody2D" to="." method="_on_surface_slow_mo"]
+[connection signal="player_died" from="Lava" to="." method="_on_lava_player_died"]
