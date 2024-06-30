@@ -81,14 +81,19 @@ flip_h = true
 flip_v = true
 
 [node name="Label" type="Label" parent="UI"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 34.0
+offset_top = 8.0
+offset_right = 330.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 32
 text = "Distance travelled: "
 
 [node name="Distance" type="Label" parent="UI"]
-offset_left = 147.0
-offset_right = 295.0
-offset_bottom = 23.0
+offset_left = 344.0
+offset_top = 8.0
+offset_right = 492.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 32
 text = "96"
 
 [node name="Label" type="Label" parent="."]
@@ -116,8 +121,8 @@ offset_left = -92.0
 offset_top = -550.0
 offset_right = 103.0
 offset_bottom = -475.0
-text = "L.MB SHOOTS LEFT
-R.MB SHOOTS RIGHT"
+text = "[L.MB] SHOOTS LEFT
+[R.MB] SHOOTS RIGHT"
 horizontal_alignment = 1
 
 [node name="Label4" type="Label" parent="."]
@@ -127,6 +132,14 @@ offset_right = 103.0
 offset_bottom = -238.0
 text = "PRESS AGAIN TO BOLT!
 (BOTH = MORE POWER)"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="."]
+offset_left = -90.0
+offset_top = -236.0
+offset_right = 105.0
+offset_bottom = -161.0
+text = "[SPACE] CUTS THE ROPE"
 horizontal_alignment = 1
 
 [connection signal="attached" from="Player" to="." method="_on_surface_normal_mo"]
