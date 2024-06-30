@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsbsq6380q8dh"]
+[gd_scene load_steps=6 format=3 uid="uid://dsbsq6380q8dh"]
 
 [ext_resource type="Texture2D" uid="uid://cpi1udnskyfv" path="res://assets/rocks/RockPack128x128.png" id="1_7nasg"]
+[ext_resource type="Script" path="res://scripts/objects/falling_obstacle.gd" id="1_x8esm"]
 [ext_resource type="Texture2D" uid="uid://dqa31nwsymshv" path="res://assets/ight_texture.webp" id="2_4ju5a"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ejws7"]
@@ -14,7 +15,10 @@ radius = 27.0185
 collision_layer = 2
 mass = 2.5
 physics_material_override = SubResource("PhysicsMaterial_ejws7")
+max_contacts_reported = 1
+contact_monitor = true
 angular_velocity = 1.5708
+script = ExtResource("1_x8esm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -30,3 +34,5 @@ shape = SubResource("CircleShape2D_uebyn")
 energy = 0.5
 texture = ExtResource("2_4ju5a")
 texture_scale = 2.5
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
