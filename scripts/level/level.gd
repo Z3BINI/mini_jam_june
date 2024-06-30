@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var camera_2d : Camera2D = $Camera2D
 
+var player_splash_sfx : AudioStream = load("res://assets/audio/player_splash.mp3")
+
 var player : Player
 
 var slow_time : bool = false
@@ -34,5 +36,7 @@ func _on_surface_normal_mo():
 
 
 func _on_lava_player_died():
+	AudioManager.play_sfx(player_splash_sfx, self, 0)
 	await get_tree().create_timer(3).timeout
 	get_tree().reload_current_scene()
+

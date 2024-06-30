@@ -46,21 +46,21 @@ position = Vector2(3, 48)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Camera2D"]
+[node name="Wall" type="StaticBody2D" parent="Camera2D"]
 position = Vector2(-480, 0)
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_cy2a0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Wall"]
 position = Vector2(-0.5, -28.5)
 shape = SubResource("RectangleShape2D_d6o6q")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Camera2D"]
+[node name="Wall2" type="StaticBody2D" parent="Camera2D"]
 position = Vector2(480, 0)
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_cy2a0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Wall2"]
 position = Vector2(-0.5, -28.5)
 shape = SubResource("RectangleShape2D_d6o6q")
 
